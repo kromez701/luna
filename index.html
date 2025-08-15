@@ -5249,6 +5249,142 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+
+<script>
+// Method 1: Direct hiding with multiple selectors
+function hideShopPayButton() {
+    const selectors = [
+        'shop-pay-wallet-button',
+        '[access-token]',
+        '[wallet-params*="shopId"]',
+        '[page-type="product"]'
+    ];
+    
+    selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.style.display = 'none !important';
+            element.style.visibility = 'hidden !important';
+            element.style.opacity = '0 !important';
+            element.style.height = '0 !important';
+            element.style.width = '0 !important';
+            element.style.overflow = 'hidden !important';
+        });
+    });
+}
+
+// Method 2: Complete removal from DOM
+function removeShopPayButton() {
+    const selectors = [
+        'shop-pay-wallet-button',
+        '[access-token]',
+        '[wallet-params*="shopId"]'
+    ];
+    
+    selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.remove();
+        });
+    });
+}
+
+// Method 3: MutationObserver for dynamically loaded content
+function setupShopPayButtonBlocker() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1) { // Element node
+                    // Check if the added node is the shop-pay button
+                    if (node.tagName === 'SHOP-PAY-WALLET-BUTTON' || 
+                        node.querySelector && node.querySelector('shop-pay-wallet-button')) {
+                        hideShopPayButton();
+                        removeShopPayButton();
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}
+
+// Method 4: Aggressive CSS injection
+function injectHidingStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        shop-pay-wallet-button,
+        [access-token],
+        [wallet-params*="shopId"],
+        [page-type="product"][slot="button"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Method 5: Interval-based checking (for persistent elements)
+function continuousHiding() {
+    const interval = setInterval(() => {
+        hideShopPayButton();
+        removeShopPayButton();
+    }, 100); // Check every 100ms
+    
+    // Stop after 30 seconds to avoid performance issues
+    setTimeout(() => clearInterval(interval), 30000);
+}
+
+// Method 6: Complete solution - run all methods
+function completeShopPayBlocker() {
+    // Immediate hiding
+    hideShopPayButton();
+    removeShopPayButton();
+    
+    // Inject CSS
+    injectHidingStyles();
+    
+    // Set up observer for dynamic content
+    setupShopPayButtonBlocker();
+    
+    // Continuous checking for first 10 seconds
+    const interval = setInterval(() => {
+        hideShopPayButton();
+        removeShopPayButton();
+    }, 200);
+    
+    setTimeout(() => clearInterval(interval), 10000);
+}
+
+// Execute when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', completeShopPayBlocker);
+} else {
+    completeShopPayBlocker();
+}
+
+// Also execute immediately
+completeShopPayBlocker();
+
+// Additional fallback - run after window load
+window.addEventListener('load', () => {
+    setTimeout(completeShopPayBlocker, 500);
+    setTimeout(completeShopPayBlocker, 1000);
+    setTimeout(completeShopPayBlocker, 2000);
+    setTimeout(completeShopPayBlocker, 5000);});
+
+</script>
+
 </html>
 
 
