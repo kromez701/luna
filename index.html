@@ -4646,7 +4646,7 @@ window.xsellData.settings = xsellSettings;
     display: none !important;
   }
   gravity-button{
-    display: none;
+    display: none !important;
   }
 
 </style>
@@ -4713,6 +4713,18 @@ document.addEventListener('DOMContentLoaded', function() {
             'black-black-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:3'
         }
     };
+
+    function hideBuyButton(){
+      const buyButton = document.querySelector('.accelerated-checkout-button');
+      if (buyButton) {
+        console.log('Hiding buy button', buyButton);
+          buyButton.style.display = 'none';
+      }
+    }
+
+    setInterval(() => {
+      hideBuyButton()
+    }, 200)
 
     // Update bundle selector pricing - fix triple pricing currency
     function updateBundlePricing() {
@@ -5230,7 +5242,8 @@ document.addEventListener('DOMContentLoaded', function() {
         getColorKey,
         handleAddToCart,
         handleVariantChange,
-        handleBarClick
+        handleBarClick,
+        hideBuyButton
     };
 })();
 
