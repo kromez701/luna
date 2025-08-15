@@ -4683,24 +4683,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // URL configuration for redirects based on variant and colors
     const redirectUrls = {
         'single': {
-            'white': '/checkout/single-white',
-            'black': '/checkout/single-black'
+            'white': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:1',
+            'black': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:1'
         },
         'double': {
-            'white-white': '/checkout/double-white-white',
-            'white-black': '/checkout/double-white-black',
-            'black-white': '/checkout/double-black-white',
-            'black-black': '/checkout/double-black-black'
+            'white-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:2',
+            'white-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:2',
+            'black-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:2',
+            'black-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:2'
         },
         'triple': {
-            'white-white-white': '/checkout/triple-white-white-white',
-            'white-white-black': '/checkout/triple-white-white-black',
-            'white-black-white': '/checkout/triple-white-black-white',
-            'white-black-black': '/checkout/triple-white-black-black',
-            'black-white-white': '/checkout/triple-black-white-white',
-            'black-white-black': '/checkout/triple-black-white-black',
-            'black-black-white': '/checkout/triple-black-black-white',
-            'black-black-black': '/checkout/triple-black-black-black'
+            'white-white-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:3',
+            'white-white-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:3',
+            'white-black-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:3',
+            'white-black-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557270861:3',
+            'black-white-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:3',
+            'black-white-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:3',
+            'black-black-white': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:3',
+            'black-black-black': 'https://n2kzpa-uw.myshopify.com/cart/52249557303629:3'
         }
     };
 
@@ -4709,22 +4709,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force update Single bundle pricing
         const singlePriceEl = document.querySelector('[data-deal-bar-id="032909a5-3356-4193-b8c1-1017d766e203"] .kaching-bundles__bar-price');
         if (singlePriceEl) {
-            singlePriceEl.innerHTML = '£29.99';
-            singlePriceEl.textContent = '£29.99';
+            singlePriceEl.innerHTML = '£29.95';
+            singlePriceEl.textContent = '£29.95';
         }
 
         // Force update Buy 2 bundle pricing
         const doublePriceEl = document.querySelector('[data-deal-bar-id="8462f914-5a63-48e0-af9a-6fcad0ed609c"] .kaching-bundles__bar-price');
         if (doublePriceEl) {
-            doublePriceEl.innerHTML = '£39.99';
-            doublePriceEl.textContent = '£39.99';
+            doublePriceEl.innerHTML = '£59.90';
+            doublePriceEl.textContent = '£59.90';
         }
 
         // Force update Buy 3 bundle pricing (fix currency from $ to £)
         const triplePriceEl = document.querySelector('[data-deal-bar-id="2c64d243-5953-4df7-95d2-739407861cb2"] .kaching-bundles__bar-price');
         if (triplePriceEl) {
-            triplePriceEl.innerHTML = '£49.99';
-            triplePriceEl.textContent = '£49.99';
+            triplePriceEl.innerHTML = '£89.85';
+            triplePriceEl.textContent = '£89.85';
         }
 
         // Also update original prices in bundle selector
